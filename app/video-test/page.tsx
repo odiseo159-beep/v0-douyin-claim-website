@@ -70,9 +70,12 @@ export default function VideoTest() {
                   muted
                   loop
                   playsInline
-                  preload="auto"
-                  src="/images/newscale.mp4"
+                  preload="metadata"
                 >
+                  <source 
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Newscale-g720MAr05O9rIzHILq3xLcxVQK0Gf3.mp4" 
+                    type="video/mp4" 
+                  />
                   {language === 'zh' ? '你的浏览器不支持视频元素。' : 'Your browser does not support the video element.'}
                 </video>
 
