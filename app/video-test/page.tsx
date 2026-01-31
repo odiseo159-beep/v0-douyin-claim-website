@@ -1,57 +1,25 @@
 'use client';
 
+import { Input } from "@/components/ui/input"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { VideoTestLiveChat } from "@/components/video-test-live-chat";
 import { useLanguage } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-interface Message {
-  id: number;
-  text: string;
-  sender: 'user' | 'system';
-  timestamp: Date;
-}
-
 export default function VideoTest() {
   const { t, language } = useLanguage();
-  
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: t('welcomeMessage'),
-      sender: 'system',
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
 
   const handleSendMessage = () => {
-    if (inputMessage.trim() === '') return;
-
-    const newMessage: Message = {
-      id: messages.length + 1,
-      text: inputMessage,
-      sender: 'user',
-      timestamp: new Date(),
-    };
-
-    setMessages([...messages, newMessage]);
-    setInputMessage('');
-
-    // Simulate system response
-    setTimeout(() => {
-      const systemResponse: Message = {
-        id: messages.length + 2,
-        text: t('systemResponse'),
-        sender: 'system',
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, systemResponse]);
-    }, 1000);
+    if (inputMessage.trim() !== '') {
+      setMessages([...messages, { id: messages.length + 1, sender: 'user', text: inputMessage, timestamp: new Date() }]);
+      setInputMessage('');
+    }
   };
 
   return (
@@ -103,7 +71,7 @@ export default function VideoTest() {
                   loop
                   playsInline
                   preload="auto"
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Newscale-g720MAr05O9rIzHILq3xLcxVQK0Gf3.mp4"
+                  src="/images/newscale.mp4"
                 >
                   {language === 'zh' ? '你的浏览器不支持视频元素。' : 'Your browser does not support the video element.'}
                 </video>
@@ -164,54 +132,8 @@ export default function VideoTest() {
                 </div>
               </div>
 
-              {/* Chat Messages */}
-              <ScrollArea className="flex-1 p-4">
-                <div className="space-y-4">
-                  {messages.map((message) => (
-                    <div
-                      key={message.id}
-                      className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div
-                        className={`max-w-[80%] rounded-xl px-4 py-2 ${
-                          message.sender === 'user'
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-muted text-foreground'
-                        }`}
-                      >
-                        <p className="text-sm leading-relaxed">{message.text}</p>
-                        <p className="text-xs opacity-70 mt-1">
-                          {message.timestamp.toLocaleTimeString(language === 'zh' ? 'zh-CN' : 'en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                          })}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </ScrollArea>
-
-              {/* Chat Input */}
-              <div className="p-4 border-t border-border">
-                <div className="flex gap-2">
-                  <Input
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                    placeholder={t('typeMessage')}
-                    className="flex-1 bg-background"
-                  />
-                  <Button
-                    onClick={handleSendMessage}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90"
-                  >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                  </Button>
-                </div>
-              </div>
+              {/* Firebase Live Chat */}
+              <VideoTestLiveChat />
             </div>
           </div>
         </div>
@@ -245,7 +167,7 @@ export default function VideoTest() {
           <div className="bg-card border border-border rounded-xl p-6">
             <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mb-3">
               <svg className="w-5 h-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <h3 className="font-semibold mb-2">{t('automaticRewards')}</h3>
