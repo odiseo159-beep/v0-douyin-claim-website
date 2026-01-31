@@ -35,178 +35,178 @@ export default function Documentation() {
 
       {/* Documentation Content */}
       <div className="max-w-4xl mx-auto px-6 py-20 relative z-10">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8">DouyinClaim Official Documentation</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-8">{t('docTitle')}</h1>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">1. Project Overview</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('docOverviewTitle')}</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            DouyinClaim (抖领) is a decentralized SocialFi protocol bridging the gap between the massive Douyin (TikTok China) creator economy and the Flap Network.
+            {t('docOverviewP1')}
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            We enable creators to monetize their social engagement (views, likes, shares) directly on-chain, eliminating traditional Web2 intermediaries and payment delays. By leveraging optimistic oracle verification, we turn "clout" into liquid assets instantly.
+            {t('docOverviewP2')}
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">2. How It Works (The Mechanics)</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('docMechanicsTitle')}</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            The protocol operates on a three-step cycle: Connect, Verify, Reward.
+            {t('docMechanicsIntro')}
           </p>
           
           <div className="space-y-6">
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-3">A. The Connection Layer</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('docConnectionTitle')}</h3>
               <p className="text-muted-foreground leading-relaxed mb-2">
-                Users connect their EVM-compatible wallet (Metamask, Rabby, etc.) to the Flap Network. To prove ownership of a Douyin account without compromising security, we use a gasless cryptographic signature.
+                {t('docConnectionP1')}
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                <li>No passwords required.</li>
-                <li>No write-access to your social account.</li>
+                <li>{t('docConnectionLi1')}</li>
+                <li>{t('docConnectionLi2')}</li>
               </ul>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-3">B. The Oracle Engine</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('docOracleTitle')}</h3>
               <p className="text-muted-foreground leading-relaxed mb-2">
-                DouyinClaim utilizes a specialized Optimistic Oracle running off-chain.
+                {t('docOracleP1')}
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                <li><strong>Scan:</strong> The Oracle monitors registered Douyin profiles for new content.</li>
-                <li><strong>Verify:</strong> It validates engagement metrics against public APIs.</li>
-                <li><strong>Sign:</strong> It generates a cryptographic proof of the engagement data.</li>
+                <li><strong>{t('docOracleLi1').split(':')[0]}:</strong> {t('docOracleLi1').split(':')[1]}</li>
+                <li><strong>{t('docOracleLi2').split(':')[0]}:</strong> {t('docOracleLi2').split(':')[1]}</li>
+                <li><strong>{t('docOracleLi3').split(':')[0]}:</strong> {t('docOracleLi3').split(':')[1]}</li>
               </ul>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-3">C. The Settlement Layer (Smart Contracts)</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('docSettlementTitle')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                The proof is submitted to the DouyinClaim Core Contract on the Flap Network. The contract verifies the Oracle's signature and automatically releases funds from the Reward Pool directly to the user's wallet.
+                {t('docSettlementP1')}
               </p>
             </div>
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">3. Quick Start Guide</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('docQuickStartTitle')}</h2>
           <div className="space-y-6">
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-3">Step 1: Wallet Setup</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('docStep1Title')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Ensure you have a Web3 wallet installed and configured for the Flap Mainnet. You will need a small amount of $FLAP tokens to cover network gas fees.
+                {t('docStep1Desc')}
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-3">Step 2: Link Identity</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('docStep2Title')}</h3>
               <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>Navigate to the Dashboard.</li>
-                <li>Enter your valid Douyin Profile URL.</li>
-                <li>Sign the ownership message (this does not cost gas).</li>
+                <li>{t('docStep2Li1')}</li>
+                <li>{t('docStep2Li2')}</li>
+                <li>{t('docStep2Li3')}</li>
               </ul>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="text-xl font-semibold mb-3">Step 3: Claim Rewards</h3>
+              <h3 className="text-xl font-semibold mb-3">{t('docStep3Title')}</h3>
               <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-                <li>Once your video is tracked, the dashboard will show "Pending Rewards".</li>
-                <li>Click the "Claim" button.</li>
-                <li>Approve the transaction in your wallet.</li>
-                <li>Funds arrive instantly.</li>
+                <li>{t('docStep3Li1')}</li>
+                <li>{t('docStep3Li2')}</li>
+                <li>{t('docStep3Li3')}</li>
+                <li>{t('docStep3Li4')}</li>
               </ul>
             </div>
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">4. Technical FAQ</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('docFAQTitle')}</h2>
           <div className="space-y-4">
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-2">Q: Is DouyinClaim affiliated with ByteDance?</h3>
+              <h3 className="font-semibold mb-2">{t('docFAQ1Q')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                A: No. We are an independent decentralized protocol built on public blockchain technology. We only access publicly available Douyin data.
+                {t('docFAQ1A')}
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-2">Q: What are the fees?</h3>
+              <h3 className="font-semibold mb-2">{t('docFAQ2Q')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                A: We charge a 5% protocol fee on claimed rewards. There are also standard Flap Network gas fees (typically &lt;$0.01 per transaction).
+                {t('docFAQ2A')}
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-2">Q: Can I claim past videos?</h3>
+              <h3 className="font-semibold mb-2">{t('docFAQ3Q')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                A: Currently, only videos published after linking your account are eligible. Historical claims may be enabled in future governance votes.
+                {t('docFAQ3A')}
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-2">Q: Is this safe? Smart contract risks?</h3>
+              <h3 className="font-semibold mb-2">{t('docFAQ4Q')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                A: Our contracts are audited by CertiK. However, like all DeFi protocols, there is inherent smart contract risk. Never invest more than you can afford to lose.
+                {t('docFAQ4A')}
               </p>
             </div>
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">5. Tokenomics</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('docTokenomicsTitle')}</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            The $FLAP token is the native currency of the Flap Network and is used for:
+            {t('docTokenomicsP1')}
           </p>
           <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4 mb-4">
-            <li>Paying network transaction fees</li>
-            <li>Distributing creator rewards</li>
-            <li>Governance voting on protocol upgrades</li>
+            <li>{t('docTokenomicsLi1')}</li>
+            <li>{t('docTokenomicsLi2')}</li>
+            <li>{t('docTokenomicsLi3')}</li>
           </ul>
           <p className="text-muted-foreground leading-relaxed">
-            DouyinClaim does not mint its own token. All rewards are paid in $FLAP directly from the community reward pool.
+            {t('docTokenomicsP2')}
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">6. Roadmap</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('docRoadmapTitle')}</h2>
           <div className="space-y-4">
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-2">✅ Phase 1 (Q1 2025) - Beta Launch</h3>
+              <h3 className="font-semibold mb-2">{t('docPhase1')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                MVP with wallet connection, Oracle integration, and basic claiming.
+                {t('docPhase1Desc')}
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-2">🔄 Phase 2 (Q2 2025) - Multi-Platform</h3>
+              <h3 className="font-semibold mb-2">{t('docPhase2')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Expand to support Kuaishou, Bilibili, and international TikTok.
+                {t('docPhase2Desc')}
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-6">
-              <h3 className="font-semibold mb-2">🔮 Phase 3 (Q3 2025) - Creator DAO</h3>
+              <h3 className="font-semibold mb-2">{t('docPhase3')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Launch governance token and decentralized creator voting on reward formulas.
+                {t('docPhase3Desc')}
               </p>
             </div>
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">7. Support & Community</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('docSupportTitle')}</h2>
           <div className="bg-card border border-border rounded-xl p-6">
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Need help? Join our community channels:
+              {t('docSupportP1')}
             </p>
             <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
-              <li>Telegram: <a href="https://web.telegram.org" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Community Group</a></li>
-              <li>X (Twitter): <a href="https://x.com/home" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">@DouyinClaim</a></li>
+              <li>{t('docSupportTelegram')} <a href="https://web.telegram.org" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">{t('docCommunityGroup')}</a></li>
+              <li>{t('docSupportTwitter')} <a href="https://x.com/home" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">@DouyinClaim</a></li>
             </ul>
           </div>
         </section>
 
         <div className="bg-primary/10 border border-primary/20 rounded-xl p-6">
           <p className="text-sm text-muted-foreground">
-            <strong>Disclaimer:</strong> DouyinClaim is beta software. Use at your own risk. Always DYOR (Do Your Own Research) before connecting wallets or claiming rewards.
+            <strong>{t('docDisclaimer').split(':')[0]}:</strong> {t('docDisclaimer').split(':')[1]}
           </p>
         </div>
       </div>
