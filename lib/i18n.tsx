@@ -27,6 +27,10 @@ export const translations: Translations = {
     zh: '连接钱包',
     en: 'Connect Wallet',
   },
+  connecting: {
+    zh: '连接中...',
+    en: 'Connecting...',
+  },
   home: {
     zh: '首页',
     en: 'Home',

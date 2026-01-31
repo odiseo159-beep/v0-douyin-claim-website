@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
+import { ConnectWalletButton } from "@/components/connect-wallet-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLanguage } from "@/lib/i18n";
 import Image from "next/image";
@@ -45,9 +46,7 @@ export default function DouyinClaim() {
             <Link href="/how-it-works">{t('howItWorks')}</Link>
           </Button>
           <LanguageSwitcher />
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-            {t('connectWallet')}
-          </Button>
+          <ConnectWalletButton />
         </div>
       </nav>
 
