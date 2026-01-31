@@ -1,6 +1,14 @@
 'use client';
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { ConnectWalletButton } from "@/components/connect-wallet-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLanguage } from "@/lib/i18n";
@@ -9,6 +17,9 @@ import Link from "next/link";
 
 export default function DouyinClaim() {
   const { t } = useLanguage();
+  const [supportOpen, setSupportOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
   
   return (
     <div className="bg-background text-foreground min-h-screen font-sans relative overflow-hidden">
@@ -143,15 +154,145 @@ export default function DouyinClaim() {
               </div>
               <div className="h-6 w-px bg-border" />
               <div className="flex gap-6 text-sm text-muted-foreground">
-                <a href="#" className="hover:text-foreground transition-colors">{t('documentation')}</a>
-                <a href="#" className="hover:text-foreground transition-colors">{t('support')}</a>
-                <a href="#" className="hover:text-foreground transition-colors">{t('terms')}</a>
-                <a href="#" className="hover:text-foreground transition-colors">{t('privacy')}</a>
+                <Link href="/documentation" className="hover:text-foreground transition-colors">
+                  {t('documentation')}
+                </Link>
+                <button 
+                  onClick={() => setSupportOpen(true)} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {t('support')}
+                </button>
+                <button 
+                  onClick={() => setTermsOpen(true)} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {t('terms')}
+                </button>
+                <button 
+                  onClick={() => setPrivacyOpen(true)} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {t('privacy')}
+                </button>
               </div>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Support Dialog */}
+      <Dialog open={supportOpen} onOpenChange={setSupportOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Need Help?</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 text-sm leading-relaxed">
+            <p>
+              <strong className="text-foreground">Community Support:</strong>{' '}
+              <span className="text-muted-foreground">
+                Join our{' '}
+                <a 
+                  href="https://web.telegram.org" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Telegram
+                </a>
+                {' '}to chat with the team and other users. This is the fastest way to get help.
+              </span>
+            </p>
+            <p>
+              <strong className="text-foreground">Documentation:</strong>{' '}
+              <span className="text-muted-foreground">
+                Read our technical docs to understand how the Flap oracle verifies your Douyin content.
+              </span>
+            </p>
+            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
+              <p className="text-destructive font-semibold">
+                Note: Admins will NEVER ask for your private key or seed phrase.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Terms Dialog */}
+      <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Terms of Service</DialogTitle>
+            <DialogDescription className="text-base">
+              By connecting your wallet to DouyinClaim, you acknowledge and agree to the following:
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 text-sm leading-relaxed">
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Beta Software:</h3>
+              <p className="text-muted-foreground">
+                This protocol is in beta. While we have audited the code, smart contracts carry inherent risks. Use at your own risk.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">No Financial Advice:</h3>
+              <p className="text-muted-foreground">
+                Nothing on this site constitutes financial advice. $FLAP token values may fluctuate.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">User Responsibility:</h3>
+              <p className="text-muted-foreground">
+                You are solely responsible for the security of your private keys and wallet. DouyinClaim cannot recover lost funds.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Platform Independence:</h3>
+              <p className="text-muted-foreground">
+                We are an independent tool built on the Flap Network and are not directly affiliated with ByteDance or Douyin.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Privacy Dialog */}
+      <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Privacy Policy</DialogTitle>
+            <DialogDescription className="text-base">
+              We prioritize your anonymity and data security:
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 text-sm leading-relaxed">
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">No Personal Data Storage:</h3>
+              <p className="text-muted-foreground">
+                We do not store your name, email, or passwords.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Public Data Only:</h3>
+              <p className="text-muted-foreground">
+                We only read public on-chain data (wallet address) and public Douyin engagement metrics (likes/views) via API.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Cookies:</h3>
+              <p className="text-muted-foreground">
+                We use minimal local storage solely to remember your UI preferences (like Dark Mode).
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Transparency:</h3>
+              <p className="text-muted-foreground">
+                All transactions are visible on the Flap blockchain explorer.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
