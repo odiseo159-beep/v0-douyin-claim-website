@@ -57,6 +57,18 @@ export const translations: Translations = {
     zh: '视频测试',
     en: 'Video Test',
   },
+  contractAddress: {
+    zh: '合约地址',
+    en: 'Contract Address',
+  },
+  copyAddress: {
+    zh: '复制地址',
+    en: 'Copy Address',
+  },
+  copied: {
+    zh: '已复制！',
+    en: 'Copied!',
+  },
   
   // Dashboard
   yourActiveClaims: {
