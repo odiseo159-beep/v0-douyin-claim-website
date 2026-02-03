@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { LanguageProvider } from '@/lib/i18n'
+import { Web3Provider } from '@/lib/web3-provider'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
         url: '/favicon.ico',
       },
       {
-        url: '/douyinclaimlogo.png',
+        url: '/logo.png',
         type: 'image/png',
       },
     ],
@@ -33,9 +34,11 @@ export default function RootLayout({
   return (
     <html lang="zh" className="dark">
       <body className={`font-sans antialiased bg-background text-foreground`}>
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <Web3Provider>
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
+        </Web3Provider>
         <Analytics />
       </body>
     </html>

@@ -1,6 +1,15 @@
 'use client';
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { ConnectWalletButton } from "@/components/connect-wallet-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useLanguage } from "@/lib/i18n";
 import Image from "next/image";
@@ -8,17 +17,20 @@ import Link from "next/link";
 
 export default function DouyinClaim() {
   const { t } = useLanguage();
+  const [supportOpen, setSupportOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
   
   return (
     <div className="bg-background text-foreground min-h-screen font-sans relative overflow-hidden">
       {/* Floating Background Logo */}
       <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center">
         <div className="relative">
-          {/* Purple Aura Glow */}
+          {/* Green Aura Glow */}
           <div className="absolute inset-0 bg-primary/30 rounded-full animate-pulse-glow scale-150" />
           {/* Floating Logo */}
           <Image
-            src="/douyinclaimlogo.png"
+            src="/logo.png"
             alt=""
             width={500}
             height={500}
@@ -32,7 +44,7 @@ export default function DouyinClaim() {
       <nav className="flex items-center justify-between px-6 py-4 border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <Link href="/" className="flex items-center gap-3">
           <Image 
-            src="/douyinclaimlogo.png" 
+            src="/logo.png" 
             alt={t('brandName')} 
             width={48} 
             height={48}
@@ -45,9 +57,7 @@ export default function DouyinClaim() {
             <Link href="/how-it-works">{t('howItWorks')}</Link>
           </Button>
           <LanguageSwitcher />
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-            {t('connectWallet')}
-          </Button>
+          <ConnectWalletButton />
         </div>
       </nav>
 
@@ -70,10 +80,43 @@ export default function DouyinClaim() {
             {t('heroDescription')}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8" asChild>
               <Link href="/video-test">{t('videoTest')}</Link>
             </Button>
+          </div>
+
+          {/* Contract Address Bar */}
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-card border border-border rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3 flex-1 min-w-0">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-muted-foreground mb-1">{t('contractAddress')}</p>
+                  <code className="text-sm font-mono text-foreground truncate block">
+                    0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
+                  </code>
+                </div>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-shrink-0 bg-transparent"
+                onClick={() => {
+                  navigator.clipboard.writeText('SOON');
+                  // Optional: Add toast notification here
+                }}
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                {t('copyAddress')}
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -109,7 +152,7 @@ export default function DouyinClaim() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
               <Image 
-                src="/douyinclaimlogo.png" 
+                src="/logo.png" 
                 alt={t('brandName')} 
                 width={32} 
                 height={32}
@@ -144,15 +187,145 @@ export default function DouyinClaim() {
               </div>
               <div className="h-6 w-px bg-border" />
               <div className="flex gap-6 text-sm text-muted-foreground">
-                <a href="#" className="hover:text-foreground transition-colors">{t('documentation')}</a>
-                <a href="#" className="hover:text-foreground transition-colors">{t('support')}</a>
-                <a href="#" className="hover:text-foreground transition-colors">{t('terms')}</a>
-                <a href="#" className="hover:text-foreground transition-colors">{t('privacy')}</a>
+                <Link href="/documentation" className="hover:text-foreground transition-colors">
+                  {t('documentation')}
+                </Link>
+                <button 
+                  onClick={() => setSupportOpen(true)} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {t('support')}
+                </button>
+                <button 
+                  onClick={() => setTermsOpen(true)} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {t('terms')}
+                </button>
+                <button 
+                  onClick={() => setPrivacyOpen(true)} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {t('privacy')}
+                </button>
               </div>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Support Dialog */}
+      <Dialog open={supportOpen} onOpenChange={setSupportOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Need Help?</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 text-sm leading-relaxed">
+            <p>
+              <strong className="text-foreground">Community Support:</strong>{' '}
+              <span className="text-muted-foreground">
+                Join our{' '}
+                <a 
+                  href="https://web.telegram.org" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Telegram
+                </a>
+                {' '}to chat with the team and other users. This is the fastest way to get help.
+              </span>
+            </p>
+            <p>
+              <strong className="text-foreground">Documentation:</strong>{' '}
+              <span className="text-muted-foreground">
+                Read our technical docs to understand how the Flap oracle verifies your Douyin content.
+              </span>
+            </p>
+            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4">
+              <p className="text-destructive font-semibold">
+                Note: Admins will NEVER ask for your private key or seed phrase.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Terms Dialog */}
+      <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Terms of Service</DialogTitle>
+            <DialogDescription className="text-base">
+              By connecting your wallet to DouyinClaim, you acknowledge and agree to the following:
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 text-sm leading-relaxed">
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Beta Software:</h3>
+              <p className="text-muted-foreground">
+                This protocol is in beta. While we have audited the code, smart contracts carry inherent risks. Use at your own risk.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">No Financial Advice:</h3>
+              <p className="text-muted-foreground">
+                Nothing on this site constitutes financial advice. $FLAP token values may fluctuate.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">User Responsibility:</h3>
+              <p className="text-muted-foreground">
+                You are solely responsible for the security of your private keys and wallet. DouyinClaim cannot recover lost funds.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Platform Independence:</h3>
+              <p className="text-muted-foreground">
+                We are an independent tool built on the Flap Network and are not directly affiliated with ByteDance or Douyin.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Privacy Dialog */}
+      <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Privacy Policy</DialogTitle>
+            <DialogDescription className="text-base">
+              We prioritize your anonymity and data security:
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 text-sm leading-relaxed">
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">No Personal Data Storage:</h3>
+              <p className="text-muted-foreground">
+                We do not store your name, email, or passwords.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Public Data Only:</h3>
+              <p className="text-muted-foreground">
+                We only read public on-chain data (wallet address) and public Douyin engagement metrics (likes/views) via API.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Cookies:</h3>
+              <p className="text-muted-foreground">
+                We use minimal local storage solely to remember your UI preferences (like Dark Mode).
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Transparency:</h3>
+              <p className="text-muted-foreground">
+                All transactions are visible on the Flap blockchain explorer.
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
