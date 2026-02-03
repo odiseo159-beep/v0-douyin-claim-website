@@ -5,6 +5,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { VideoTestLiveChat } from "@/components/video-test-live-chat";
+import { VideoPlayer } from "@/components/video-player";
 import { useLanguage } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
@@ -62,21 +63,13 @@ export default function VideoTest() {
             <div className="bg-card border border-border rounded-xl overflow-hidden">
               {/* Video Player */}
               <div className="relative aspect-[9/16] max-h-[600px] bg-black">
-                <video
-                  className="w-full h-full object-contain"
-                  controls
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
+                <VideoPlayer 
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Newscale-g720MAr05O9rIzHILq3xLcxVQK0Gf3.mp4"
-                >
-                  {language === 'zh' ? '你的浏览器不支持视频元素。' : 'Your browser does not support the video element.'}
-                </video>
+                  className="aspect-[9/16] max-h-[600px]"
+                />
 
                 {/* Verification Badge */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2">
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
                   <div className="bg-background/90 backdrop-blur-sm border border-primary/50 rounded-full px-4 py-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     <span className="text-xs font-semibold text-primary">{t('verifiedByFlap')}</span>
