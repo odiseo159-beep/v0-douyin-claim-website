@@ -98,7 +98,7 @@ export default function DouyinClaim() {
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-muted-foreground mb-1">{t('contractAddress')}</p>
                   <code className="text-sm font-mono text-foreground truncate block">
-                    0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
+                    Soon
                   </code>
                 </div>
               </div>
