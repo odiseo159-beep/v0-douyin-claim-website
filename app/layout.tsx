@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: '/favicon.ico',
       },
       {
-        url: '/douyinclaimlogo.png',
+        url: '/logo.png',
         type: 'image/png',
       },
     ],

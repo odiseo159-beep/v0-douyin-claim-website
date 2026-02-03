@@ -16,7 +16,7 @@ export default function Documentation() {
       <nav className="flex items-center justify-between px-6 py-4 border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <Link href="/" className="flex items-center gap-3">
           <Image 
-            src="/douyinclaimlogo.png" 
+            src="/logo.png" 
             alt={t('brandName')} 
             width={48} 
             height={48}
@@ -217,7 +217,7 @@ export default function Documentation() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
               <Image 
-                src="/douyinclaimlogo.png" 
+                src="/logo.png" 
                 alt={t('brandName')} 
                 width={32} 
                 height={32}

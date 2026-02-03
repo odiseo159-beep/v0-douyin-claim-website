@@ -28,7 +28,7 @@ export default function VideoTest() {
       <nav className="flex items-center justify-between px-6 py-4 border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <Link href="/" className="flex items-center gap-3">
           <Image 
-            src="/douyinclaimlogo.png" 
+            src="/logo.png" 
             alt={t('brandName')} 
             width={48} 
             height={48}
@@ -73,7 +73,7 @@ export default function VideoTest() {
                   preload="metadata"
                 >
                   <source 
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Newscale-g720MAr05O9rIzHILq3xLcxVQK0Gf3.mp4" 
+                    src="/images/newscale.mp4" 
                     type="video/mp4" 
                   />
                   {language === 'zh' ? '你的浏览器不支持视频元素。' : 'Your browser does not support the video element.'}

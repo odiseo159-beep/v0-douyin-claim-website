@@ -26,11 +26,11 @@ export default function DouyinClaim() {
       {/* Floating Background Logo */}
       <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center">
         <div className="relative">
-          {/* Purple Aura Glow */}
+          {/* Green Aura Glow */}
           <div className="absolute inset-0 bg-primary/30 rounded-full animate-pulse-glow scale-150" />
           {/* Floating Logo */}
           <Image
-            src="/douyinclaimlogo.png"
+            src="/logo.png"
             alt=""
             width={500}
             height={500}
@@ -44,7 +44,7 @@ export default function DouyinClaim() {
       <nav className="flex items-center justify-between px-6 py-4 border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <Link href="/" className="flex items-center gap-3">
           <Image 
-            src="/douyinclaimlogo.png" 
+            src="/logo.png" 
             alt={t('brandName')} 
             width={48} 
             height={48}
@@ -152,7 +152,7 @@ export default function DouyinClaim() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
               <Image 
-                src="/douyinclaimlogo.png" 
+                src="/logo.png" 
                 alt={t('brandName')} 
                 width={32} 
                 height={32}
