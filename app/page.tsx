@@ -107,7 +107,7 @@ export default function DouyinClaim() {
                 size="sm"
                 className="flex-shrink-0 bg-transparent"
                 onClick={() => {
-                  navigator.clipboard.writeText('0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb');
+                  navigator.clipboard.writeText('SOON');
                   // Optional: Add toast notification here
                 }}
               >
