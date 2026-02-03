@@ -62,7 +62,6 @@ export default function VideoTest() {
             <div className="bg-card border border-border rounded-xl overflow-hidden">
               {/* Video Player */}
               <div className="relative aspect-[9/16] max-h-[600px] bg-black">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <video
                   className="w-full h-full object-contain"
                   controls
@@ -70,12 +69,9 @@ export default function VideoTest() {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="auto"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Newscale-g720MAr05O9rIzHILq3xLcxVQK0Gf3.mp4"
                 >
-                  <source 
-                    src="/images/newscale.mp4" 
-                    type="video/mp4" 
-                  />
                   {language === 'zh' ? '你的浏览器不支持视频元素。' : 'Your browser does not support the video element.'}
                 </video>
 
